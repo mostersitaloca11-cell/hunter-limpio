@@ -9,33 +9,29 @@
 <body>
 
     <div class="app-container">
-        
-        <!-- PANTALLA 1: BIENVENIDA -->
-        <section id="screen-welcome" class="screen">
-            <div class="welcome-content">
-                <span class="main-emoji">🏡✨</span>
-                <h1>Hunter Limpio</h1>
-                <p class="slogan">¡Un Hunter limpio inicia desde casa!</p>
-                <button id="btn-welcome-start" class="btn btn-primary">Comenzar</button>
-            </div>
-        </section>
 
-        <!-- PANTALLA 2: REGISTRO DE VECINO -->
-        <section id="screen-register" class="screen hidden">
+        <!-- PANTALLA 1: BIENVENIDA -->
+        <div id="screen-welcome" class="screen welcome-content">
+            <div class="main-emoji">🏡✨</div>
+            <h1>Hunter Limpio</h1>
+            <p class="slogan">¡Un Hunter limpio inicia desde casa!</p>
+            <button id="btn-welcome-start" class="btn btn-primary">Comenzar</button>
+        </div>
+
+        <!-- PANTALLA 2: REGISTRO -->
+        <div id="screen-register" class="screen hidden">
             <h2>Registro de Vecino</h2>
             <p class="subtitle">Ingresa tus datos para mantenerte informado sobre la limpieza en tu zona.</p>
             
             <form id="form-register">
                 <div class="form-group">
                     <label for="reg-name">Nombre y Apellido</label>
-                    <input type="text" id="reg-name" required placeholder="Ej. Juan Pérez">
+                    <input type="text" id="reg-name" placeholder="Ej. Juan Pérez" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="reg-phone">Número de Celular</label>
-                    <input type="tel" id="reg-phone" required placeholder="Ej. 987654321">
+                    <input type="tel" id="reg-phone" placeholder="Ej. 987654321" required>
                 </div>
-                
                 <div class="form-group">
                     <label for="reg-sector">Sector / Zona de Hunter</label>
                     <select id="reg-sector" required>
@@ -46,132 +42,120 @@
                         <option value="Chilpinilla">Chilpinilla</option>
                     </select>
                 </div>
-                
                 <button type="submit" class="btn btn-primary">Ingresar</button>
             </form>
-        </section>
+        </div>
 
-        <!-- PANTALLA 3: MIS HORARIOS -->
-        <section id="screen-schedules" class="screen hidden">
-            <h2>Mis Horarios</h2>
-            <div class="card user-info-card">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <p>Hola, <strong id="user-display-name">Vecino</strong></p>
-                        <p style="margin-top: 4px;">Zona: <span id="user-display-sector" class="badge">Zona</span></p>
-                    </div>
-                    <button id="btn-logout" class="btn-logout">🚪 Salir</button>
-                </div>
+        <!-- PANTALLA 3: HORARIOS (PANTALLA PRINCIPAL POST-LOGIN) -->
+        <div id="screen-schedules" class="screen hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2>Mis Horarios</h2>
+                <button id="btn-logout" class="btn-logout">🚪 Salir</button>
             </div>
             
-            <div class="card schedule-card">
-                <h3>🕒 Horario de Recolección</h3>
-                <div id="schedule-result">Cargando horario...</div>
+            <div class="card user-info-card">
+                <p>Hola, <strong id="user-display-name">Vecino</strong></p>
+                <p>Zona: <span id="user-display-sector" class="badge">Zona</span></p>
+            </div>
+
+            <h3>🕒 Horario de Recolección</h3>
+            <div id="schedule-result" class="card">
+                <p>Cargando horario...</p>
             </div>
             <p class="notice">Saca tu basura únicamente dentro de las horas indicadas para evitar multas y acumulación.</p>
-        </section>
+        </div>
 
-        <!-- PANTALLA 4: PUNTOS DE CONTENEDORES (TACHOS) -->
-        <section id="screen-map" class="screen hidden">
+        <!-- PANTALLA 4: PUNTOS DE CONTENEDORES -->
+        <div id="screen-tachos" class="screen hidden">
             <h2>Puntos de Contenedores</h2>
             <p class="subtitle">Ubicación de los contenedores municipales instalados en las avenidas principales y zonas críticas de Hunter.</p>
-            
+
+            <h3>📍 Puntos Verificados por el Equipo:</h3>
             <div class="card">
-                <h4>📍 Puntos Verificados por el Equipo:</h4>
-                <ul id="tachos-list" style="margin-left: 20px; margin-top: 10px; line-height: 1.7; font-size: 14px; color: #333;">
-                    <li><strong>Avenida Tahuantinsuyo:</strong> Contenedores dobles colocados en las bermas peatonales junto a las jardineras.</li>
-                    <li><strong>Alrededores de la 25 (Av. Viña del Mar):</strong> Batería de tachos triples en las esquinas comerciales de alto tránsito.</li>
-                    <li><strong>Zonas Críticas Avanzadas:</strong> Contenedores junto a muros expuestos y perímetros de mercados zonales.</li>
-                </ul>
+                <p><strong>Avenida Tahuantinsuyo:</strong> Contenedores dobles colocados en las bermas peatonales junto a las jardineras.</p>
+            </div>
+            <div class="card">
+                <p><strong>Alrededores de la 25 (Av. Viña del Mar):</strong> Batería de tachos triples en las esquinas comerciales de alto tránsito.</p>
+            </div>
+            <div class="card collaborative-card">
+                <p><strong>Zonas Críticas Avanzadas:</strong> Contenedores junto a muros expuestos y perímetros de mercados zonales.</p>
             </div>
 
-            <div class="card collaborative-card">
-                <h4>🗺️ ¡Ayúdanos a mapear Hunter!</h4>
-                <p style="font-size: 12px; color: #555; margin-top: 4px;">Si encuentras otro tacho municipal cerca de tu barrio, envíanos la esquina exacta para sumarla.</p>
-                
-                <form id="form-nuevo-tacho" action="https://formspree.io" method="POST" style="margin-top: 12px;">
-                    <input type="hidden" name="Tipo_de_Mensaje" value="Sugerencia de Nuevo Tacho">
-                    <div class="form-group" style="margin-bottom: 8px;">
-                        <input type="text" id="tacho-address" name="Ubicacion_del_Tacho" required placeholder="Ej. Calle Túpac Amaru cuadra 2" style="padding: 10px; font-size: 14px;">
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="padding: 10px; font-size: 14px; margin-top: 5px; background-color: #2196F3;">Enviar Ubicación</button>
-                </form>
-                <div id="tacho-success-msg" class="alert-success hidden">
-                    ¡Gracias! Verificaremos el punto para sumarlo.
+            <h3>🗺 ¡Ayúdanos a mapear Hunter!</h3>
+            <p class="subtitle">Si encuentras otro tacho municipal cerca de tu barrio, envíanos la esquina exacta para sumarla.</p>
+            
+            <!-- Reemplaza action="#" por tu enlace de Formspree/Formsubmit -->
+            <form id="form-nuevo-tacho" action="#" method="POST">
+                <div class="form-group">
+                    <label for="tacho-direccion">Dirección o Esquina Exacta</label>
+                    <input type="text" id="tacho-direccion" name="direccion" placeholder="Ej. Av. Mariscal Cáceres con Calle Lima" required>
                 </div>
-            </div>
-        </section>
+                <button type="submit" class="btn btn-primary">Enviar Ubicación</button>
+            </form>
+            <div id="tacho-success-msg" class="alert-success hidden">¡Gracias! Verificaremos el punto para sumarlo.</div>
+        </div>
 
         <!-- PANTALLA 5: REPORTES CIUDADANOS -->
-        <section id="screen-reports" class="screen hidden">
+        <div id="screen-reports" class="screen hidden">
             <h2>Reportes Ciudadanos</h2>
             <p class="subtitle">Formulario de contingencia para reportar acumulación de residuos a deshoras.</p>
-            
-            <form id="form-report" action="https://formspree.io" method="POST">
-                <input type="hidden" name="Tipo_de_Mensaje" value="Reporte de Basura Acumulada">
+
+            <!-- Reemplaza action="#" por tu enlace de Formspree/Formsubmit -->
+            <form id="form-report" action="#" method="POST">
                 <div class="form-group">
-                    <label for="rep-address">Dirección Exacta / Referencia</label>
-                    <input type="text" id="rep-address" name="Direccion" required placeholder="Ej. Av. Principal Nro. 123">
+                    <label for="report-direccion">Dirección Exacta / Referencia</label>
+                    <input type="text" id="report-direccion" name="direccion" placeholder="Ej. Frente al mercado San José" required>
                 </div>
-                
                 <div class="form-group">
-                    <label for="rep-status">Estado del Problema</label>
-                    <select id="rep-status" name="Estado_del_Problema" required>
+                    <label for="report-estado">Estado del Problema</label>
+                    <select id="report-estado" name="estado" required>
                         <option value="Acumulación Leve">Acumulación Leve (Pocas bolsas)</option>
                         <option value="Acumulación Crítica">Acumulación Crítica (Bloquea el paso)</option>
                         <option value="Desmonte / Escombros">Desmonte / Escombros</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
-                    <label for="rep-image">Adjuntar Imagen de Evidencia</label>
-                    <input type="file" id="rep-image" name="Evidencia" accept="image/*">
+                    <label for="report-file">Adjuntar Imagen de Evidencia</label>
+                    <input type="file" id="report-file" name="evidencia" accept="image/*">
                 </div>
-                
                 <button type="submit" class="btn btn-primary">Enviar Reporte Anónimo</button>
             </form>
-            
-            <div id="report-success-msg" class="alert-success hidden">
-                ¡Reporte enviado con éxito! Se ha mandado una copia a la central de revisión.
-            </div>
-        </section>
+            <div id="report-success-msg" class="alert-success hidden">¡Reporte enviado con éxito! Se ha mandado una copia a la central de revisión.</div>
+        </div>
 
         <!-- PANTALLA 6: WHATSAPP VECINAL -->
-        <section id="screen-whatsapp" class="screen hidden">
+        <div id="screen-whatsapp" class="screen hidden">
             <h2>WhatsApp Vecinal</h2>
             <p class="subtitle">Únete a nuestra comunidad digital para coordinaciones de emergencia en tiempo real.</p>
-            
-            <div class="qr-container">
-                <img src="image_XcVNtj.png" alt="Presiona abajo" class="qr-image" style="max-width: 100px; display: block; margin: 0 auto;">
-                <p class="qr-instructions">Presiona el botón verde de abajo para unirte al grupo de WhatsApp.</p>
-            </div>
             
             <div class="card senior-notice">
                 <p>🙋‍♂️ <strong>Nota inclusiva:</strong> Si conoces a un adulto mayor sin teléfono inteligente, ¡ayúdale compartiendo los horarios impresos o agregando sus reportes desde tu aplicación!</p>
             </div>
-            
-            <a href="https://whatsapp.com" target="_blank" class="btn btn-whatsapp">
-                💬 Unirse al Grupo Directo
-            </a>
-        </section>
 
-        <!-- MENÚ DE NAVEGACIÓN INFERIOR (Asegurando el ID correcto para JS) -->
+            <div class="welcome-content" style="padding-top: 20px;">
+                <p class="subtitle">Presiona el botón verde de abajo para unirte al grupo de WhatsApp.</p>
+                <!-- Reemplaza el '#' por tu link real de invitación de WhatsApp -->
+                <a href="#" target="_blank" class="btn btn-whatsapp">💬 Unirse al Grupo Directo</a>
+            </div>
+        </div>
+
+        <!-- BARRA DE NAVEGACIÓN INFERIOR (TAB BAR) -->
         <nav id="app-tab-bar" class="tab-bar hidden">
             <button class="tab-item active" data-target="screen-schedules">
                 <span class="tab-icon">🕒</span>
-                <span class="tab-label">Horarios</span>
+                <span>Horarios</span>
             </button>
-            <button class="tab-item" data-target="screen-map">
+            <button class="tab-item" data-target="screen-tachos">
                 <span class="tab-icon">📍</span>
-                <span class="tab-label">Tachos</span>
+                <span>Tachos</span>
             </button>
             <button class="tab-item" data-target="screen-reports">
                 <span class="tab-icon">⚠️</span>
-                <span class="tab-label">Reportes</span>
+                <span>Reportes</span>
             </button>
             <button class="tab-item" data-target="screen-whatsapp">
                 <span class="tab-icon">💬</span>
-                <span class="tab-label">WhatsApp</span>
+                <span>WhatsApp</span>
             </button>
         </nav>
 
